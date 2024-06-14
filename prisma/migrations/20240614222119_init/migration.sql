@@ -10,7 +10,7 @@ CREATE TABLE "Bug" (
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "status" "Status" NOT NULL DEFAULT 'OPEN',
-    "priority" "Priority" NOT NULL DEFAULT 'MEDIUM',
+    "priority" "Priority" NOT NULL,
     "assignee" TEXT,
     "dueDate" TIMESTAMP(3),
     "project" TEXT NOT NULL,
