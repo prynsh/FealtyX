@@ -1,14 +1,14 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 import prisma from '../../../prisma/db';
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
-  const { bugId, timeSpent } = req.body;
-
-  if (!bugId || !timeSpent) {
-    return res.status(400).json({ message: 'Bug ID and time spent are required' });
-  }
-
+export async function POST(req: NextRequest) {
   try {
+    const { bugId, timeSpent } = await req.json();
+
+    if (!bugId || !timeSpent) {
+      return NextResponse.json({ message: 'Bug ID and time spent are required' }, { status: 400 });
+    }
+
     const updatedBug = await prisma.bug.update({
       where: { id: Number(bugId) },
       data: {
@@ -18,8 +18,8 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
       },
     });
 
-    return res.status(200).json({ message: 'Time spent updated successfully', updatedBug });
+    return NextResponse.json({ message: 'Time spent updated successfully', updatedBug });
   } catch (error) {
-    return res.status(500).json({ message: 'Failed to update time spent', error });
+    return NextResponse.json({ message: 'Failed to update time spent', error }, { status: 500 });
   }
 }
