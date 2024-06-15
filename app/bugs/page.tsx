@@ -100,12 +100,14 @@ const BugsPage = () => {
     }
   };
 
-  const handleEdit = (task: Task) => {
+  const handleEdit = (task: Task, e: React.MouseEvent) => {
+    e.stopPropagation(); // Stop event propagation
     setFormData(task);
     setIsModalOpen(true);
   };
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: number, e: React.MouseEvent) => {
+    e.stopPropagation(); // Stop event propagation
     if (window.confirm('Are you sure you want to delete this task?')) {
       try {
         const response = await fetch(`/api/bugs?id=${id}`, {
@@ -175,13 +177,13 @@ const BugsPage = () => {
               <div className="flex space-x-2 mt-4">
                 <button
                   className="bg-black text-white px-4 py-2 rounded-md"
-                  onClick={() => handleEdit(task)}
+                  onClick={(e) => handleEdit(task, e)} // Pass event to stop propagation
                 >
                   Edit
                 </button>
                 <button
                   className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md"
-                  onClick={() => handleDelete(task.id)}
+                  onClick={(e) => handleDelete(task.id, e)} // Pass event to stop propagation
                 >
                   Delete
                 </button>
