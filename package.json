@@ -14,6 +14,9 @@
     "@prisma/client": "^5.15.0",
     "@radix-ui/themes": "^3.0.5",
     "antd": "^5.18.1",
+    "axios": "^1.7.2",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
     "monorepo": "github:radix-ui/themes",
     "next": "14.2.4",
     "prisma": "^5.15.0",
@@ -23,6 +26,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

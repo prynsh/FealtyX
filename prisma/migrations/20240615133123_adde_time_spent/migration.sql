@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Bug" ADD COLUMN     "timeSpent" DOUBLE PRECISION NOT NULL DEFAULT 0;
