@@ -23,7 +23,9 @@ const AppBar = () => {
         {links.map(link=><Link key={link.href} 
         href={link.href} className={`${link.href=== currentRoute ?'': 'text-gray-500'}  hover:text-white transition`}> {link.label} </Link>)}
         
-      </ul>
+      </ul><div>
+      <button> SignOut</button>
+      </div>
     </div>
   )
 }
