@@ -18,14 +18,10 @@ const TimeSpent: React.FC<TimeSpentProps> = ({ bugId }) => {
       if (startTime) {
         const endTime = Date.now();
         const timeSpent = endTime - startTime;
-
-        // Fetch the current total time from the API or local storage
         const currentTotalTime = parseInt(localStorage.getItem('totalTimeSpent') || '0', 10);
 
         const newTotalTime = currentTotalTime + timeSpent;
         setTotalTime(newTotalTime);
-        
-        // Save the new total time to local storage or send to the API
         localStorage.setItem('totalTimeSpent', newTotalTime.toString());
 
         fetch('/api/timeSpent', {
