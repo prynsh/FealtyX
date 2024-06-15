@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Bug Tracker Application
+
+Welcome to the Bug Tracker Application! This application allows users to sign in, view a dashboard displaying all reported bugs, and create new bug reports. Users can filter bugs by priority and view detailed information for each bug. Below is a detailed guide on how to set up and use the application.
+
+## Features
+
+- **Sign In Page**: Authenticate users before accessing the dashboard.
+- **Dashboard**: Displays a list of bugs with details such as title, description, status (open/closed), priority, and time spent.
+- **Bugs Page**: Allows users to create new bug reports through a modal form.
+- **Filter**: Filter bugs based on their priority.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js (version 12 or later)
+- npm or yarn
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the repository**
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+    ```bash
+    git clone https://github.com/prynsh/FealtyX.git
+    cd FealtyX
+    ```
 
-## Learn More
+2. **Install dependencies**
 
-To learn more about Next.js, take a look at the following resources:
+    ```bash
+    npm install
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Run the application**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    ```bash
+    npm run dev
+    ```
 
-## Deploy on Vercel
+    The application will start on `http://localhost:3000`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Usage
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Sign In
+
+Navigate to the `/signin` page and enter your credentials to log in.
+
+### Dashboard
+
+Once logged in, you will be redirected to the dashboard. Here you can:
+
+- **View Bugs**: See all reported bugs with their details.
+- **Bug Details**: Click on any bug to view its detailed information, including title, description, status, priority, and time spent.
+
+### Bugs Page
+
+- **Create New Bug**: Click on the "New Task" button to open a modal form. Fill in the necessary details (title, description, priority, etc.) and submit to create a new bug report.
+- **Filter Bugs**: Use the priority filter to view bugs based on their priority level.
+
+## Features Detail
+
+- **Sign In Page**:
+  - Provides a form to log in using username and password.
+
+- **Dashboard**:
+  - Displays a table with columns: Title, Description, Status, Priority, and Time Spent.
+  - Status can be toggled between Open and Closed.
+
+- **Bugs Page**:
+  - Modal form for creating new bug reports.
+  - Fields include: Title, Description, Priority, and Time Spent.
+  
+- **Filter Functionality**:
+  - Dropdown or input to filter bugs by priority (High, Medium, Low).
+
+
+
+## Contact
+
+For any questions or feedback, please contact me at [prynsshh@gmail.com].
+
+---
+
+
