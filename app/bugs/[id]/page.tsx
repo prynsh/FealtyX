@@ -174,7 +174,9 @@
 // importnant code 
 "use client";
 
-import { useParams, useRouter } from 'next/navigation';
+"use client";
+
+import { useParams } from 'next/navigation';
 import { useEffect, useState, useCallback } from 'react';
 import React from "react";
 
@@ -215,11 +217,11 @@ const BugDetails = () => {
     if (bug && startTime === null) {
       setStartTime(Date.now());
     }
-  }, [bug]);
+  }, [bug, startTime]);
 
   useEffect(() => {
     return () => {
-      if (startTime) {
+      if (startTime !== null) {
         const endTime = Date.now();
         const timeSpent = endTime - startTime;
 
@@ -258,3 +260,4 @@ const BugDetails = () => {
 };
 
 export default BugDetails;
+
