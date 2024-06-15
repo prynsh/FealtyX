@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 interface ModalProps {
   formData: {
@@ -16,11 +17,19 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ formData, handleChange, handleSubmit, closeModal }) => {
+  const router = useRouter();
+
+  const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleSubmit(e); // Assuming handleSubmit handles form submission logic
+    router.push('/bugs'); // Redirect to "/bugs" after saving
+  };
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-gray-800 p-6 rounded-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-4">Create/Edit Task</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSave}>
           <div className="mb-4">
             <label className="block text-white">Title</label>
             <input
