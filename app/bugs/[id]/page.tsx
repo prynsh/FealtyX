@@ -1,8 +1,7 @@
 
 "use client";
 
-"use client";
-
+import AppBar from '@/components/AppBar';
 import { useParams } from 'next/navigation';
 import { useEffect, useState, useCallback } from 'react';
 import React from "react";
@@ -76,12 +75,15 @@ const BugDetails = () => {
   }
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">{bug.title}</h1>
-      <p><strong>Description:</strong> {bug.description}</p>
-      <p><strong>Status:</strong> {bug.status}</p>
-      <p><strong>Priority:</strong> {bug.priority}</p>
-      <p><strong>Total Time Spent:</strong> {Math.floor(bug.totalTimeSpent / 1000)} seconds</p>
+    <div>
+      <AppBar/>
+        <div className="container mx-auto p-4">
+          <h1 className="text-2xl font-bold mb-4">{bug.title}</h1>
+          <p><strong>Description:</strong> {bug.description}</p>
+          <p><strong>Status:</strong> {bug.status}</p>
+          <p><strong>Priority:</strong> {bug.priority}</p>
+          <p><strong>Total Time Spent:</strong> {Math.floor(bug.totalTimeSpent / 1000)} seconds</p>
+        </div>
     </div>
   );
 };

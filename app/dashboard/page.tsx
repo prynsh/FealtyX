@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import BugBox from '../../components/BugBox';
 import TimeSpent from '../../components/TimeSpent';
+import AppBar from '@/components/AppBar';
 
 interface Bug {
   id: number;
@@ -15,6 +16,7 @@ interface Bug {
 
 export default function Home() {
   const [bugs, setBugs] = useState<Bug[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchBugs = async () => {
@@ -27,6 +29,8 @@ export default function Home() {
         setBugs(data.bugs);
       } catch (error) {
         console.error('Failed to fetch bugs:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -34,17 +38,24 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Bug Tracker</h1>
-      <TimeSpent />
-      <div className="bug-list-container" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
-        {bugs.length > 0 ? (
-          bugs.map((bug) => (
-            <BugBox key={bug.id} bug={bug} />
-          ))
-        ) : (
-          <p>No bugs found</p>
-        )}
+    <div>
+      <AppBar />
+      <div className="container mx-auto p-4">
+        <h1 className="text-2xl font-bold mb-4">Bug Tracker</h1>
+        <TimeSpent />
+        <div className="bug-list-container" style={{ maxHeight: '80vh', overflowY: 'auto' }}>
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            bugs.length > 0 ? (
+              bugs.map((bug) => (
+                <BugBox key={bug.id} bug={bug} />
+              ))
+            ) : (
+              <p>No bugs found</p>
+            )
+          )}
+        </div>
       </div>
     </div>
   );

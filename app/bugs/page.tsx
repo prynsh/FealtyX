@@ -2,6 +2,8 @@
 import { useRouter } from 'next/navigation';
 import React, { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import Modal from '../../components/Modal';
+import {message} from "antd";
+import AppBar from '@/components/AppBar';
 
 interface Task {
   id: number;
@@ -81,7 +83,7 @@ const BugsPage = () => {
       }
 
       const bugData: Task = await response.json();
-      alert('Bug created successfully!');
+      message.success('Bug created successfully!');
       setTasks([...tasks, bugData]);
       setFormData({
         id: 0,
@@ -95,16 +97,16 @@ const BugsPage = () => {
       setIsModalOpen(false);
       router.push("/bugs")
     } catch (error) {
-      alert('Failed to create bug.');
+      message.error('Failed to create bug.');
       console.error(error);
     }
   };
 
-  const handleEdit = (task: Task, e: React.MouseEvent) => {
-    e.stopPropagation(); 
-    setFormData(task);
-    setIsModalOpen(true);
-  };
+  // const handleEdit = (task: Task, e: React.MouseEvent) => {
+  //   e.stopPropagation(); 
+  //   setFormData(task);
+  //   setIsModalOpen(true);
+  // };
 
   const handleDelete = async (id: number, e: React.MouseEvent) => {
     e.stopPropagation(); 
@@ -122,11 +124,11 @@ const BugsPage = () => {
         setTasks(updatedTasks);
         setFilteredTasks(updatedTasks);
 
-        alert('Task deleted successfully!');
+        message.success('Task deleted successfully!');
         router.push("/bugs")
       } catch (error) {
         console.error(error);
-        alert('Failed to delete task.');
+        message.error('Failed to delete task.');
       }
     }
   };
@@ -136,6 +138,9 @@ const BugsPage = () => {
   };
 
   return (
+    <div>
+      <AppBar/>
+    
     <div className="min-h-screen flex bg-black text-white">
       <div className="w-full p-6 space-y-4 rounded-md shadow-md">
         <div className='flex justify-between items-center'>
@@ -161,7 +166,7 @@ const BugsPage = () => {
             
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="max-h-[70vh] overflow-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {filteredTasks.map((task, index) => (
             <div
               key={index}
@@ -175,12 +180,12 @@ const BugsPage = () => {
               <p>Due Date: {new Date(task.dueDate).toLocaleDateString()}</p>
               <p>Priority: {task.priority}</p>
               <div className="flex space-x-2 mt-4">
-                <button
+                {/* <button
                   className="bg-black text-white px-4 py-2 rounded-md"
                   onClick={(e) => handleEdit(task, e)} 
                 >
                   Edit
-                </button>
+                </button> */}
                 <button
                   className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md"
                   onClick={(e) => handleDelete(task.id, e)} 
@@ -201,6 +206,7 @@ const BugsPage = () => {
           closeModal={() => setIsModalOpen(false)}
         />
       )}
+    </div>
     </div>
   );
 };
