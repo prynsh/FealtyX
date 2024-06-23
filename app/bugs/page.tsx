@@ -13,6 +13,7 @@ interface Task {
   assignee: string;
   dueDate: string;
   priority: string;
+  totalTimeSpent: number;
 }
 
 const BugsPage = () => {
@@ -23,7 +24,9 @@ const BugsPage = () => {
     project: '',
     assignee: '',
     dueDate: '',
-    priority: 'Medium'
+    priority: 'Medium',
+    totalTimeSpent:0
+
   });
   const [tasks, setTasks] = useState<Task[]>([]);
   const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
@@ -92,7 +95,8 @@ const BugsPage = () => {
         project: '',
         assignee: '',
         dueDate: '',
-        priority: 'Medium'
+        priority: 'Medium',
+        totalTimeSpent:0
       });
       setIsModalOpen(false);
       router.push("/bugs")
@@ -186,12 +190,12 @@ const BugsPage = () => {
                 >
                   Edit
                 </button> */}
-                <button
+                {/* <button
                   className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md"
                   onClick={(e) => handleDelete(task.id, e)} 
                 >
                   Delete
-                </button>
+                </button> */}
               </div>
             </div>
           ))}
